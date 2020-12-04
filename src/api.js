@@ -29,13 +29,15 @@ const currentYear = new Date().getFullYear();
  const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
  const lastYear = `${currentYear -1}-${currentMonth}-${currentDay}`;
  const nextYear = `${currentYear +1}-${currentMonth}-${currentDay}`;
- console.log(currentDate);
- console.log(lastYear);
- console.log(nextYear);
 
  //url for most popular games.
- const popular_games = `games?dates=${lastYear},${nextYear}&ordering=rating&page_size=10`;
+ const popular_games = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+ const new_games = `games?dates=${lastYear},${currentDate}&ordering=-release&page_size=10`;
+ const upcoming_games = `games?dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 
-export  const popularGamesURL = () => `${base_url}${popular_games}`;
-
- console.log(popularGamesURL());
+export const popularGamesURL = () => `${base_url}${popular_games}`;
+export const newGamesURL = () => `${base_url}${new_games};`
+export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
+export const GameDetailsURL = (game_id) => `${base_url}games/${game_id}`;
+export const GameScreenShotURL = (game_id) => `${base_url}games/${game_id}/screenshots`;
+export const searchedURL = (game_name) => `${base_url}games?search=${game_name}&page_size=9`;
