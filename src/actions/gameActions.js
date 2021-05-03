@@ -2,7 +2,6 @@ import axios from 'axios';
 import {popularGamesURL, upcomingGamesURL, newGamesURL, searchedURL} from '../api';
 
 //Action creator
-
 export const loadGames = () => async (dispatch) => {
     //dispatch Loading Games
     dispatch({
@@ -10,10 +9,21 @@ export const loadGames = () => async (dispatch) => {
     });
 
     //Fetch Axios
-    const popularData = await axios.get(popularGamesURL());
-    const newGamesData = await axios.get(newGamesURL());
-    const upcomingGamesData = await axios.get(upcomingGamesURL());
-
+    const popularData = await axios.get(popularGamesURL(), {
+        headers: {
+            'Origin': 'https://api.rawg.io/api/',
+        }
+    });
+    const newGamesData = await axios.get(newGamesURL(), {
+        headers: {
+            'Origin': 'https://api.rawg.io/api/',
+        }
+    });
+    const upcomingGamesData = await axios.get(upcomingGamesURL(), {
+        headers: {
+            'Origin': 'https://api.rawg.io/api/',
+        }
+    });
     dispatch({
         type: "FETCH_GAMES",
         payload: {
@@ -25,7 +35,11 @@ export const loadGames = () => async (dispatch) => {
 };
 
 export const fetchSearch = (game_name) => async (dispatch) => {
-    const searchedData = await axios.get(searchedURL(game_name));
+    const searchedData = await axios.get(searchedURL(game_name), {
+        headers: {
+            'Origin': 'https://api.rawg.io/api/',
+        }
+    });
     dispatch({
         type: "FETCH_SEARCH",
         payload: {
