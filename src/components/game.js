@@ -11,10 +11,8 @@ import {Link} from 'react-router-dom';
 //import util
 import {smallImage} from '../util';
 
-
 const Game = ({name, released, id, image}) => {
     const stringPathId = id.toString();
-    //Load Details
     const dispatch = useDispatch();
     const detailHandler = () => {
         document.body.style.overflow = "hidden";
